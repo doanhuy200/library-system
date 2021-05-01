@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::prefix('reader')->as('reader.')->group(base_path('routes/reader/index.php'));
+Route::get('/', 'DashboardController@dashboard')->name('dashboard');
