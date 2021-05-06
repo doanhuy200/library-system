@@ -20,6 +20,17 @@ final class GenderType
     const MALE = 1;
 
     /**
+     * Gender text
+     */
+    const FEMALE_TEXT = 'Female';
+    const MALE_TEXT   = 'Male';
+
+    const ARRAY_GENDER = [
+        self::FEMALE => self::FEMALE_TEXT,
+        self::MALE   => self::MALE_TEXT,
+    ];
+
+    /**
      * @param $gender
      * @return string
      */
@@ -27,9 +38,9 @@ final class GenderType
     {
         switch ($gender) {
             case self::FEMALE:
-                return 'Female';
+                return self::FEMALE_TEXT;
             case self::MALE:
-                return 'Male';
+                return self::MALE_TEXT;
             default:
                 return 'Unknown';
         }

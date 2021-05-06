@@ -5,13 +5,13 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    @include('layouts.preloader')
+  @include('layouts.preloader')
 
-    @include('layouts.sidebar')
+  @include('layouts.sidebar')
 
-    @yield('content')
+  @yield('content')
 
-    @include('layouts.footer')
+  @include('layouts.footer')
 
 </div>
 <!-- ./wrapper -->
@@ -22,7 +22,7 @@
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-    $.widget.bridge('uibutton', $.ui.button)
+  $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
