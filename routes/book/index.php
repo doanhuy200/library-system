@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('reader')->as('reader.')->group(base_path('routes/reader/index.php'));
-Route::prefix('book')->as('book.')->group(base_path('routes/book/index.php'));
-Route::get('/', 'DashboardController@dashboard')->name('dashboard');
+Route::get('/', 'BookController@index')->name('index');
+Route::get('/create', 'BookController@create')->name('create');
+Route::post('/store', 'BookController@store')->name('store');
+Route::get('/edit/{book}', 'BookController@edit')->name('edit');
+Route::put('/update/{book}', 'BookController@update')->name('update');
