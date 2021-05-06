@@ -70,6 +70,41 @@
                   <button type="submit" class="btn btn-primary">Cập nhật</button>
                 </div>
               </form>
+
+              <div class="card-header">
+                <h3 class="card-title">History borrow book</h3>
+              </div>
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr class="background-table-one">
+                      <th>#</th>
+                      <th>Title</th>
+                      <th>Languages</th>
+                      <th>Author</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (count($reader->books) != 0)
+                      @foreach($reader->books as $book)
+                        <tr>
+                          <td>{{ $book->id }}</td>
+                          <td>{{ $book->title }}</td>
+                          <td>{{ $book->languages }}</td>
+                          <td>{{ $book->author->name ?? '' }}</td>
+                        </tr>
+                      @endforeach
+                    @else
+                      <tr>
+                        <td colspan="12" class="text-center">Not yet borrow book</td>
+                      </tr>
+                    @endif
+                    </tbody>
+                  </table>
+                </div>
+              </div>
               <!-- /.card-body -->
             </div>
           </div>

@@ -34,6 +34,20 @@
           @include('message-error')
 
             <div class="card-body">
+              <form class="form-group" action="{{ route('book.index') }}" method="get">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label>Title</label>
+                  </div>
+                  <div class="col-sm-6">
+                    <input class="form-control" type="text" name="search" placeholder="Input title" value="{{ old('search', request('search')) }}">
+                  </div>
+                  <div class="col-sm-3">
+                    <button class="form-control btn btn-primary" type="submit">Search</button>
+                  </div>
+                </div>
+              </form>
+
               <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                   <thead>
@@ -55,6 +69,7 @@
                         <td>{{ $book->author->name ?? '' }}</td>
                         <td>
                           <a href="{{ route('book.edit', $book->id) }}"><i class="fa fa-edit"></i></a>
+                          <a href="{{ route('book.show', $book->id) }}"><i class="fa fa-eye"></i></a>
                         </td>
                       </tr>
                     @endforeach

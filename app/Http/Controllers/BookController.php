@@ -7,12 +7,14 @@ use App\Http\Requests\Book\UpdateBookRequest;
 use App\Models\Book;
 use App\Repositories\AuthorRepository;
 use App\Repositories\BookRepository;
+use App\Services\Book\GetListBookService;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index(BookRepository $bookRepository)
+    public function index(Request $request, GetListBookService $listBookService)
     {
-        $books = $bookRepository->with('author')->paginate(10);
+        $books = $listBookService->handle($request->all());
 
         return view('book.index', compact('books'));
     }
@@ -41,14 +43,23 @@ class BookController extends Controller
         }
     }
 
-    public function edit(Book $book, AuthorRepository $authorRepository)
+    public function show($id, AuthorRepository $authorRepository)
     {
         $authors = $authorRepository->all();
+        $book = Book::with('readers')->findOrFail($id);
+
+        return view('book.show', compact('book', 'authors'));
+    }
+
+    public function edit($id, AuthorRepository $authorRepository)
+    {
+        $authors = $authorRepository->all();
+        $book = Book::findOrFail($id);
 
         return view('book.edit', compact('book', 'authors'));
     }
 
-    public function update(Book $book, UpdateBookRequest $request)
+    public function update($id, UpdateBookRequest $request)
     {
         try {
             $dataUpdate = [
@@ -56,7 +67,7 @@ class BookController extends Controller
                 'languages' => $request->languages_book,
                 'author_id' => $request->author_id,
             ];
-
+            $book = Book::findOrFail($id);
             $book->update($dataUpdate);
 
             return redirect()->route('book.index')->withFlashSuccess('Update Book success');

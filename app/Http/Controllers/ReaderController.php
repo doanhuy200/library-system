@@ -39,8 +39,10 @@ class ReaderController extends Controller
         }
     }
 
-    public function edit(Reader $reader)
+    public function edit($id)
     {
+        $reader = Reader::with('books')->find($id);
+
         return view('reader.edit', compact('reader'));
     }
 
