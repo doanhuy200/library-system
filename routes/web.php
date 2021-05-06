@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('reader')->as('reader.')->group(base_path('routes/reader/index.php'));
 Route::prefix('book')->as('book.')->group(base_path('routes/book/index.php'));
+Route::prefix('borrow')->as('borrow.')->group(base_path('routes/borrow/index.php'));
 Route::get('/', 'DashboardController@dashboard')->name('dashboard');
