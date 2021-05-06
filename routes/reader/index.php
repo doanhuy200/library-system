@@ -14,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'ReaderController@index')->name('index');
+Route::get('/create', 'ReaderController@create')->name('create');
+Route::post('/store', 'ReaderController@store')->name('store');
+Route::get('/edit/{reader}', 'ReaderController@edit')->name('edit');
+Route::put('/update/{reader}', 'ReaderController@update')->name('update');
